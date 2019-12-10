@@ -13,9 +13,9 @@ services:
       - "5432:5432"
 
   webserver:
-    image: puckel/docker-airflow:1.10.1
+    image: puckel/docker-airflow:latest
     build:
-      context: https://github.com/puckel/docker-airflow.git#1.10.1
+      context: https://github.com/puckel/docker-airflow.git#latest
       dockerfile: Dockerfile
       args:
         AIRFLOW_DEPS: postgres,s3
@@ -29,9 +29,6 @@ services:
     volumes:
       - ./dags:/usr/local/airflow/dags
       - ./plugins:/usr/local/airflow/plugins
-      - ../projects:/usr/local/projects
-      - ..projects/redjam:/usr/local/airflow/dags/redjam
-      - ../projects/aa_demo_project:/usr/local/airflow/dags/aa_demo_project
     ports:
       - "8080:8080"
     command: webserver
